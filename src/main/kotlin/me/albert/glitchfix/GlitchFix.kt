@@ -57,9 +57,9 @@ class GlitchFix : JavaPlugin(), Listener {
     fun onTeleport(event: PlayerTeleportEvent) {
         val player = event.player
         if (player.allowFlight && event.to.world != event.from.world) {
-            scheduler.runAtEntity(player, {
+            scheduler.runAtEntity(player) {
                 player.allowFlight = true
-            })
+            }
         }
     }
 
