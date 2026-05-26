@@ -10,6 +10,7 @@ group = "me.albert"
 version = "1.0.0"
 
 repositories {
+    mavenLocal()
     mavenCentral()
     maven("https://repo.papermc.io/repository/maven-public/") {
         name = "papermc-repo"
@@ -38,7 +39,7 @@ dependencies {
     paperweight.foliaDevBundle("26.1.2.build.+")
     compileOnly("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     compileOnly("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.11.0")
-    compileOnly(files("libs/CoreLib-1.0.0-all.jar"))
+    compileOnly("me.albert:corelib:1.0.0")
 }
 
 tasks {
@@ -49,7 +50,7 @@ tasks {
         minecraftVersion("1.21")
     }
     shadowJar {
-//        relocate("com.tcoded.folialib", "me.albert.elimiter.libs.folialib")
+        relocate("com.tcoded.folialib", "me.albert.core.folialib")
     }
 }
 

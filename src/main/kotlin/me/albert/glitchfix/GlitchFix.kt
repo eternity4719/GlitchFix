@@ -1,8 +1,8 @@
 package me.albert.glitchfix
 
 import com.google.gson.Gson
-import me.albert.core.folialib.FoliaLib
-import me.albert.core.folialib.impl.PlatformScheduler
+import com.tcoded.folialib.FoliaLib
+import com.tcoded.folialib.impl.PlatformScheduler
 import org.bukkit.Material
 import org.bukkit.block.ShulkerBox
 import org.bukkit.event.EventHandler
