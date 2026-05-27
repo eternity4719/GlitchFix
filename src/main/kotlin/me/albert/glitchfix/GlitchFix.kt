@@ -3,6 +3,7 @@ package me.albert.glitchfix
 import com.tcoded.folialib.FoliaLib
 import com.tcoded.folialib.impl.PlatformScheduler
 import me.albert.corelib.utils.registerEvents
+import me.albert.glitchfix.fixes.AntiEmoji
 import me.albert.glitchfix.fixes.CommonFix
 import me.albert.glitchfix.fixes.ItemDrop
 import org.bukkit.plugin.java.JavaPlugin
@@ -29,8 +30,10 @@ class GlitchFix : JavaPlugin() {
         foliaLib = FoliaLib(this)
         registerEvents(CommonFix)
         registerEvents(ItemDrop)
+        registerEvents(AntiEmoji)
         logger.info("GlitchFix 已加载 ✅")
         saveDefaultConfig()
     }
+
 
 }

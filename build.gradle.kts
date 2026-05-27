@@ -18,6 +18,7 @@ repositories {
     maven("https://repo.tcoded.com/releases") {
         name = "tcoded-releases"
     }
+    maven("https://repo.codemc.io/repository/maven-public/")
 
 }
 
@@ -46,6 +47,7 @@ dependencies {
     compileOnly("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     compileOnly("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.11.0")
     compileOnly("me.albert:corelib:1.0.0")
+    compileOnly("com.github.retrooper:packetevents-spigot:2.12.1")
 }
 
 tasks {

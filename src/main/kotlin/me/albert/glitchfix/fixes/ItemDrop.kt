@@ -1,9 +1,11 @@
 package me.albert.glitchfix.fixes
 
+import me.albert.corelib.utils.air
 import me.albert.glitchfix.scheduler
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
 import org.bukkit.event.player.PlayerDropItemEvent
+import org.bukkit.event.player.PlayerQuitEvent
 import org.bukkit.inventory.ItemStack
 
 object ItemDrop : Listener {
@@ -25,11 +27,27 @@ object ItemDrop : Listener {
                 if (!e.isCancelled) {
                     return@runAtEntity
                 }
-                if (player.itemOnCursor.isEmpty){
+                if (player.itemOnCursor.isEmpty) {
                     player.setItemOnCursor(item)
                 }
             }
         }
+    }
+
+    @EventHandler
+    fun onLeave(event: PlayerQuitEvent) {
+        val player = event.player
+        val cursor = player.itemOnCursor.clone()
+        if (cursor.isEmpty) {
+            return
+        }
+        player.setItemOnCursor(air)
+        val inv = player.inventory
+        if (inv.firstEmpty() == -1){
+            player.dropItem(cursor)
+            return
+        }
+        inv.addItem(cursor)
     }
 
     private fun ItemStack.isPrecious(): Boolean {
