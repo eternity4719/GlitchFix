@@ -7,6 +7,7 @@ import me.albert.corelib.utils.*
 import me.albert.glitchfix.fixes.AntiEmoji
 import me.albert.glitchfix.fixes.CommonFix
 import me.albert.glitchfix.fixes.ItemDrop
+import me.albert.glitchfix.fixes.TileSave
 import org.bukkit.command.Command
 import org.bukkit.command.CommandSender
 import org.bukkit.entity.Player
@@ -36,6 +37,7 @@ class GlitchFix : JavaPlugin() {
         registerEvents(CommonFix)
         registerEvents(ItemDrop)
         registerEvents(AntiEmoji)
+        registerEvents(TileSave)
         PacketEvents.getAPI().eventManager.registerListener(
             AntiEmoji
         )
