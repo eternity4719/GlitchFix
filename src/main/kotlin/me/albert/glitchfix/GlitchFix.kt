@@ -67,10 +67,17 @@ class GlitchFix : JavaPlugin() {
                         sender.sendMsg("§a命名者为: ${namer}")
                         return true
                     }
+
+                    "reload" -> {
+                        reloadConfig()
+                        sender.sendMsg("配置文件已经重新加载")
+                        return true
+                    }
                 }
             }
         }
         sender.sendMsg("§a/glitchfix anvil - 查看铁砧命名者")
+        sender.sendMsg("§a/glitchfix reload")
         return true
     }
 
