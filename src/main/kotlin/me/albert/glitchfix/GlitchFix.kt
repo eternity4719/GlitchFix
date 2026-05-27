@@ -64,7 +64,7 @@ class GlitchFix : JavaPlugin() {
                             return true
                         }
                         val namer: String = item.itemMeta[anvilKey] ?: "未知"
-                        sender.sendMsg("§a命名者为:${namer}")
+                        sender.sendMsg("§a命名者为: ${namer}")
                         return true
                     }
                 }

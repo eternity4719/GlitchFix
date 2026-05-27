@@ -94,11 +94,11 @@ object AntiEmoji : Listener, PacketListenerAbstract(PacketListenerPriority.HIGHE
 
             val oldMeta = oldItem?.itemMeta
             val meta = newItem?.itemMeta ?: return
-
-
+            newItem.editMeta {
+                it[anvilKey] = e.whoClicked.name
+            }
             if (meta.displayName.hasEmoji() || oldMeta?.displayName?.contains("§") == true) {
                 meta.setDisplayName(oldMeta?.displayName)
-                meta[anvilKey] = e.whoClicked.name
                 newItem.itemMeta = meta
             }
         }
