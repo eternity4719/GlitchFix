@@ -43,7 +43,7 @@ object ItemDrop : Listener {
         }
         player.setItemOnCursor(air)
         val inv = player.inventory
-        if (inv.firstEmpty() == -1){
+        if (inv.firstEmpty() == -1) {
             player.dropItem(cursor)
             return
         }
