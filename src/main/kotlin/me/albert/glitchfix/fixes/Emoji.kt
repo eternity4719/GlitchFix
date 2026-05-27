@@ -8,6 +8,7 @@ import com.github.retrooper.packetevents.wrapper.play.client.WrapperPlayClientCh
 import com.github.retrooper.packetevents.wrapper.play.client.WrapperPlayClientChatMessage
 import com.github.retrooper.packetevents.wrapper.play.client.WrapperPlayClientUpdateSign
 import me.albert.corelib.utils.isNull
+import me.albert.corelib.utils.set
 import org.bukkit.entity.Player
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
@@ -92,8 +93,10 @@ object AntiEmoji : Listener, PacketListenerAbstract(PacketListenerPriority.HIGHE
             val oldMeta = oldItem?.itemMeta
             val meta = newItem?.itemMeta ?: return
 
+
             if (meta.displayName.hasEmoji() || oldMeta?.displayName?.contains("§") == true) {
                 meta.setDisplayName(oldMeta?.displayName)
+                meta[e.whoClicked.name] = e.whoClicked.name
                 newItem.itemMeta = meta
             }
         }

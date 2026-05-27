@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
 plugins {
     kotlin("jvm") version "2.3.20"
     id("com.gradleup.shadow") version "9.4.1"
@@ -25,7 +27,27 @@ repositories {
 java {
     // 关键：必须加上这行，发布时才会生成并附带源码！
     withSourcesJar()
+    targetCompatibility = JavaVersion.VERSION_25
+    sourceCompatibility = JavaVersion.VERSION_25
 }
+
+val targetJavaVersion = 25
+
+kotlin {
+    jvmToolchain(targetJavaVersion)
+    compilerOptions {
+        jvmTarget = JvmTarget.JVM_25
+    }
+}
+
+tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
+    compilerOptions {
+        jvmTarget = JvmTarget.JVM_25
+    }
+}
+
+
+
 
 
 publishing {
@@ -60,12 +82,6 @@ tasks {
     shadowJar {
         relocate("com.tcoded.folialib", "me.albert.core.folialib")
     }
-}
-
-val targetJavaVersion = 25
-
-kotlin {
-    jvmToolchain(targetJavaVersion)
 }
 
 tasks.build {

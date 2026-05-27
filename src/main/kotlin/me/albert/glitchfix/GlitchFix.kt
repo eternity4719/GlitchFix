@@ -22,6 +22,8 @@ val debug get() = config.getBoolean("debug")
 
 val logger get() = instance.logger
 
+val anvilKey get() = "anvil_name_key"
+
 class GlitchFix : JavaPlugin() {
 
 
