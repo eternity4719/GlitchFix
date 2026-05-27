@@ -1,6 +1,7 @@
 package me.albert.glitchfix.fixes
 
 import me.albert.corelib.utils.getMeta
+import me.albert.corelib.utils.sendMsg
 import me.albert.corelib.utils.setMetadata
 import me.albert.glitchfix.scheduler
 import org.bukkit.Bukkit
@@ -40,7 +41,7 @@ object CommonFix : Listener {
         val toLocation = evt.to
         if (toLocation.y > 500.0) {
             val player = evt.player
-            player.sendMessage("${ChatColor.GREEN}你超过飞行高度. 限制高度 [${ChatColor.RED}500${ChatColor.GREEN}]")
+            player.sendMsg("${ChatColor.GREEN}你超过飞行高度. 限制高度 [${ChatColor.RED}500${ChatColor.GREEN}]")
             evt.to.y = 495.0
         }
     }
@@ -92,7 +93,7 @@ object CommonFix : Listener {
                 item.amount > item.type.maxStackSize
             ) {
                 e.isCancelled = true
-                e.player.sendMessage("§c此潜影盒内含有超过最大堆叠数量的物品！请移除后再摧毁！")
+                e.player.sendMsg("§c此潜影盒内含有超过最大堆叠数量的物品！请移除后再摧毁！")
                 return
             }
         }

@@ -8,7 +8,9 @@ import com.github.retrooper.packetevents.wrapper.play.client.WrapperPlayClientCh
 import com.github.retrooper.packetevents.wrapper.play.client.WrapperPlayClientChatMessage
 import com.github.retrooper.packetevents.wrapper.play.client.WrapperPlayClientUpdateSign
 import me.albert.corelib.utils.isNull
+import me.albert.corelib.utils.sendMsg
 import me.albert.corelib.utils.set
+import me.albert.glitchfix.anvilKey
 import org.bukkit.entity.Player
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
@@ -39,7 +41,7 @@ object AntiEmoji : Listener, PacketListenerAbstract(PacketListenerPriority.HIGHE
                 val wrapper = WrapperPlayClientChatMessage(event)
                 if (containsEmoji(wrapper.message)) {
                     event.isCancelled = true
-                    player.sendMessage("§c你的聊天信息包含非法字符,发送失败")
+                    player.sendMsg("§c你的聊天信息包含非法字符,发送失败")
                 }
             }
 
@@ -48,7 +50,7 @@ object AntiEmoji : Listener, PacketListenerAbstract(PacketListenerPriority.HIGHE
                 val wrapper = WrapperPlayClientChatCommand(event)
                 if (containsEmoji(wrapper.command)) {
                     event.isCancelled = true
-                    player.sendMessage("§c你的指令包含非法字符,发送失败")
+                    player.sendMsg("§c你的指令包含非法字符,发送失败")
                 }
             }
 
@@ -59,7 +61,7 @@ object AntiEmoji : Listener, PacketListenerAbstract(PacketListenerPriority.HIGHE
                 val allLines = wrapper.textLines.joinToString("\n")
                 if (containsEmoji(allLines)) {
                     event.isCancelled = true
-                    player.sendMessage("§c你的告示牌信息包含非法字符,更新失败")
+                    player.sendMsg("§c你的告示牌信息包含非法字符,更新失败")
                 }
             }
         }
@@ -72,13 +74,13 @@ object AntiEmoji : Listener, PacketListenerAbstract(PacketListenerPriority.HIGHE
 
         if (meta.hasTitle() && containsEmoji(meta.title!!)) {
             event.isCancelled = true
-            event.player.sendMessage("§c你的书本标题包含非法字符!")
+            event.player.sendMsg("§c你的书本标题包含非法字符!")
             return
         }
 
         if (containsEmoji(meta.pages.toString())) {
             event.isCancelled = true
-            event.player.sendMessage("§c你的书本内容包含非法字符!")
+            event.player.sendMsg("§c你的书本内容包含非法字符!")
         }
     }
 
@@ -96,7 +98,7 @@ object AntiEmoji : Listener, PacketListenerAbstract(PacketListenerPriority.HIGHE
 
             if (meta.displayName.hasEmoji() || oldMeta?.displayName?.contains("§") == true) {
                 meta.setDisplayName(oldMeta?.displayName)
-                meta[e.whoClicked.name] = e.whoClicked.name
+                meta[anvilKey] = e.whoClicked.name
                 newItem.itemMeta = meta
             }
         }

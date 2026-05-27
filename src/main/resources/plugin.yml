@@ -5,7 +5,7 @@ api-version: '1.13'
 folia-supported: true
 commands:
   glitchfix:
-    aliases: [gf]
+    aliases: [ gf ]
     permission: "admin"
 softdepend:
   - CoreLib
