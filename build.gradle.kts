@@ -21,6 +21,12 @@ repositories {
 
 }
 
+java {
+    // 关键：必须加上这行，发布时才会生成并附带源码！
+    withSourcesJar()
+}
+
+
 publishing {
     publications {
         create<MavenPublication>("mavenJava") {

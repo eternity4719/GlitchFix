@@ -1,8 +1,8 @@
 package me.albert.glitchfix
 
-import com.google.gson.Gson
 import com.tcoded.folialib.FoliaLib
 import com.tcoded.folialib.impl.PlatformScheduler
+import me.albert.corelib.utils.registerEvents
 import org.bukkit.Material
 import org.bukkit.block.ShulkerBox
 import org.bukkit.event.EventHandler
@@ -31,8 +31,6 @@ val debug get() = config.getBoolean("debug")
 
 val logger get() = instance.logger
 
-val gson = Gson()
-
 
 class GlitchFix : JavaPlugin(), Listener {
 
@@ -44,7 +42,7 @@ class GlitchFix : JavaPlugin(), Listener {
 
     override fun onEnable() {
         instance = this
-        server.pluginManager.registerEvents(this, this)
+        registerEvents(this)
         logger.info("GlitchFix 已加载 ✅")
         saveDefaultConfig()
     }
