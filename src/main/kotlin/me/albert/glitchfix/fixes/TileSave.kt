@@ -13,7 +13,7 @@ import org.bukkit.event.entity.EntityExplodeEvent
 import org.bukkit.inventory.ItemStack
 
 object TileSave : Listener {
-    val saveKey = "tile_item_data"
+    const val SAVE_KEY = "tile_item_data"
 
     @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
     fun onPlace(event: BlockPlaceEvent) {
@@ -27,7 +27,7 @@ object TileSave : Listener {
             return
         }
         val itemData = item.serializeAsBytes()
-        state[saveKey] = itemData
+        state[SAVE_KEY] = itemData
         state.update(true, false)
     }
 
@@ -37,10 +37,10 @@ object TileSave : Listener {
         if (state !is TileState) {
             return
         }
-        if (!state.hasPD(saveKey)) {
+        if (!state.hasPD(SAVE_KEY)) {
             return
         }
-        val itemToDrop = ItemStack.deserializeBytes(state[saveKey]!!)
+        val itemToDrop = ItemStack.deserializeBytes(state[SAVE_KEY]!!)
         itemToDrop.amount = 1
         val items = event.items
         if (items.size != 1) {
