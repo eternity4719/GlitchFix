@@ -13,6 +13,7 @@ import me.albert.corelib.utils.set
 import me.albert.glitchfix.anvilKey
 import org.bukkit.entity.Player
 import org.bukkit.event.EventHandler
+import org.bukkit.event.EventPriority
 import org.bukkit.event.Listener
 import org.bukkit.event.inventory.InventoryClickEvent
 import org.bukkit.event.inventory.InventoryType
@@ -84,7 +85,7 @@ object AntiEmoji : Listener, PacketListenerAbstract(PacketListenerPriority.HIGHE
         }
     }
 
-    @EventHandler
+    @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
     fun onRename(e: InventoryClickEvent) {
         if (e.inventory.type == InventoryType.ANVIL) {
             val oldItem = e.inventory.getItem(0)
