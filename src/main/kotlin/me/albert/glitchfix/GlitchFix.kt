@@ -4,10 +4,7 @@ import com.github.retrooper.packetevents.PacketEvents
 import com.tcoded.folialib.FoliaLib
 import com.tcoded.folialib.impl.PlatformScheduler
 import me.albert.corelib.utils.*
-import me.albert.glitchfix.fixes.AntiEmoji
-import me.albert.glitchfix.fixes.CommonFix
-import me.albert.glitchfix.fixes.ItemDrop
-import me.albert.glitchfix.fixes.TileSave
+import me.albert.glitchfix.fixes.*
 import org.bukkit.command.Command
 import org.bukkit.command.CommandSender
 import org.bukkit.entity.Player
@@ -26,7 +23,7 @@ val debug get() = config.getBoolean("debug")
 
 val logger get() = instance.logger
 
-val anvilKey get() = "anvil_name_key"
+const val anvilKey = "anvil_name_key"
 
 class GlitchFix : JavaPlugin() {
 
@@ -38,6 +35,7 @@ class GlitchFix : JavaPlugin() {
         registerEvents(ItemDrop)
         registerEvents(AntiEmoji)
         registerEvents(TileSave)
+        registerEvents(GuiLock)
         PacketEvents.getAPI().eventManager.registerListener(
             AntiEmoji
         )

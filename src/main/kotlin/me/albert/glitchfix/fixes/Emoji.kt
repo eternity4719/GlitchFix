@@ -90,7 +90,7 @@ object AntiEmoji : Listener, PacketListenerAbstract(PacketListenerPriority.HIGHE
             val oldItem = e.inventory.getItem(0)
             val newItem = e.currentItem
 
-            if (newItem.isNull || newItem.isNull) return
+            if (newItem.isNull || oldItem.isNull) return
 
             val oldMeta = oldItem?.itemMeta
             val meta = newItem?.itemMeta ?: return
@@ -98,8 +98,9 @@ object AntiEmoji : Listener, PacketListenerAbstract(PacketListenerPriority.HIGHE
                 it[anvilKey] = e.whoClicked.name
             }
             if (meta.displayName.hasEmoji() || oldMeta?.displayName?.contains("§") == true) {
-                meta.setDisplayName(oldMeta?.displayName)
-                newItem.itemMeta = meta
+                newItem.editMeta {
+                    it.setDisplayName(oldMeta?.displayName)
+                }
             }
         }
     }
