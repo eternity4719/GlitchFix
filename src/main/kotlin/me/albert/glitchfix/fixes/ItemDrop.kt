@@ -50,7 +50,7 @@ object ItemDrop : Listener {
         inv.addItem(cursor)
     }
 
-    private fun ItemStack.isPrecious(): Boolean {
+    fun ItemStack.isPrecious(): Boolean {
         // 使用 ?. 避免 ItemMeta 为空时崩溃，若为空则直接返回 false
         val item = this
         val meta = item.itemMeta ?: return false
@@ -65,7 +65,7 @@ object ItemDrop : Listener {
             return true
         }
 
-        // 检查是否有任何附魔等级大于 5
-        return enchants.values.any { it > 5 }
+        // 检查是否有任何附魔等级大于 3
+        return enchants.values.any { it >= 3 }
     }
 }

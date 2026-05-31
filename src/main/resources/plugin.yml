@@ -8,5 +8,6 @@ commands:
     aliases: [ gf ]
     permission: "admin"
 softdepend:
+  - mcMMO
   - CoreLib
   - PacketEvents
