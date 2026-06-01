@@ -1,7 +1,6 @@
 package me.albert.glitchfix.fixes
 
 import me.albert.corelib.utils.air
-import me.albert.glitchfix.scheduler
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
 import org.bukkit.event.player.PlayerDropItemEvent
@@ -16,21 +15,14 @@ object ItemDrop : Listener {
         if (player.isSneaking) {
             return
         }
+        if (player.inventory.firstEmpty() == -1) {
+            return
+        }
         val item = e.itemDrop.itemStack.clone()
 
         if (item.isPrecious()) {
             e.isCancelled = true
             player.sendMessage("§7[§b系统§7] §a检测到当前物品过于贵重,请按Shift+Q进行丢弃!")
-        }
-        if (player.inventory.firstEmpty() == -1) {
-            scheduler.runAtEntity(player) {
-                if (!e.isCancelled) {
-                    return@runAtEntity
-                }
-                if (player.itemOnCursor.isEmpty) {
-                    player.setItemOnCursor(item)
-                }
-            }
         }
     }
 
