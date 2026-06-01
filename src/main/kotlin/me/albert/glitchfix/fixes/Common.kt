@@ -79,11 +79,16 @@ object CommonFix : Listener {
 
     @Synchronized
     @EventHandler
-    fun onLogin(event: PlayerLoginEvent) {
-        val uuid = event.player.uniqueId
+    fun onLogin(event: AsyncPlayerPreLoginEvent) {
+        val uuid = event.uniqueId
+        val name = event.name
+        if (Bukkit.getPlayerExact(name) != null) {
+            event.disallow(AsyncPlayerPreLoginEvent.Result.KICK_WHITELIST, "§c玩家 ${name} 已经在服务器中了!")
+            return
+        }
         joins[uuid]?.let { last ->
             if (System.currentTimeMillis() - last < 1000) {
-                event.disallow(PlayerLoginEvent.Result.KICK_WHITELIST, "§c登录频繁，请稍后再试！")
+                event.disallow(AsyncPlayerPreLoginEvent.Result.KICK_WHITELIST, "§c登录频繁，请稍后再试！")
                 return
             }
         }
