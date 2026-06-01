@@ -54,7 +54,7 @@ publishing {
     publications {
         create<MavenPublication>("mavenJava") {
             from(components["java"]) // Java 项目，或 components["kotlin"] 对于 Kotlin Multiplatform
-            artifactId = "elimiter"
+            artifactId = "glitchfix"
         }
     }
 

@@ -8,11 +8,13 @@ import org.bukkit.Bukkit
 import org.bukkit.ChatColor
 import org.bukkit.Material
 import org.bukkit.block.ShulkerBox
+import org.bukkit.entity.ArmorStand
 import org.bukkit.event.EventHandler
 import org.bukkit.event.EventPriority
 import org.bukkit.event.Listener
 import org.bukkit.event.block.BlockBreakEvent
 import org.bukkit.event.block.BlockFromToEvent
+import org.bukkit.event.entity.EntitySpawnEvent
 import org.bukkit.event.entity.ProjectileHitEvent
 import org.bukkit.event.player.*
 import org.bukkit.event.server.PluginDisableEvent
@@ -34,6 +36,15 @@ object CommonFix : Listener {
                 player.allowFlight = true
             }
         }
+    }
+
+    @EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
+    fun onSpawn(event: EntitySpawnEvent) {
+        val entity = event.entity
+        if (entity !is ArmorStand) {
+            return
+        }
+        entity.setArms(true)
     }
 
     @EventHandler
