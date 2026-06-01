@@ -40,7 +40,7 @@ class GlitchFix : JavaPlugin() {
         PacketEvents.getAPI().eventManager.registerListener(
             AntiEmoji
         )
-        logger.info("GlitchFix 已加载 ✅")
+        logger.info("${name} 已加载 ✅")
         saveDefaultConfig()
     }
 
