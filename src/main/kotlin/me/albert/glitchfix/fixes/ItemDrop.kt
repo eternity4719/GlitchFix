@@ -3,6 +3,7 @@ package me.albert.glitchfix.fixes
 import me.albert.corelib.utils.air
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
+import org.bukkit.event.entity.ItemSpawnEvent
 import org.bukkit.event.player.PlayerDropItemEvent
 import org.bukkit.event.player.PlayerQuitEvent
 import org.bukkit.inventory.ItemStack
@@ -25,6 +26,17 @@ object ItemDrop : Listener {
             e.isCancelled = true
             player.sendMessage("§7[§b系统§7] §a检测到当前物品过于贵重,请按Shift+Q进行丢弃!")
         }
+    }
+
+    @EventHandler(ignoreCancelled = true)
+    fun onItemSpawn(event: ItemSpawnEvent) {
+        val item = event.entity
+        val itemStack = item.itemStack
+        if (itemStack.itemMeta?.hasDisplayName() == false) {
+            return
+        }
+        item.customName(itemStack.effectiveName())
+        item.isCustomNameVisible = true
     }
 
     @EventHandler
