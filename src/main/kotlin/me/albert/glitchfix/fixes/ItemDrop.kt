@@ -15,10 +15,11 @@ object ItemDrop : Listener {
         if (player.isSneaking) {
             return
         }
+        val item = e.itemDrop.itemStack.clone()
+
         if (player.inventory.firstEmpty() == -1) {
             return
         }
-        val item = e.itemDrop.itemStack.clone()
 
         if (item.isPrecious()) {
             e.isCancelled = true
