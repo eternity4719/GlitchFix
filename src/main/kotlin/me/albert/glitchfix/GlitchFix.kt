@@ -1,8 +1,6 @@
 package me.albert.glitchfix
 
 import com.github.retrooper.packetevents.PacketEvents
-import com.tcoded.folialib.FoliaLib
-import com.tcoded.folialib.impl.PlatformScheduler
 import me.albert.corelib.utils.*
 import me.albert.glitchfix.fixes.*
 import org.bukkit.command.Command
@@ -13,9 +11,6 @@ import org.bukkit.plugin.java.JavaPlugin
 
 lateinit var instance: GlitchFix
 
-lateinit var foliaLib: FoliaLib
-
-val scheduler: PlatformScheduler get() = foliaLib.scheduler
 
 val config get() = instance.config
 
@@ -30,7 +25,6 @@ class GlitchFix : JavaPlugin() {
 
     override fun onEnable() {
         instance = this
-        foliaLib = FoliaLib(this)
         registerEvents(CommonFix)
         registerEvents(ItemDrop)
         registerEvents(AntiEmoji)

@@ -1,9 +1,10 @@
 package me.albert.glitchfix.fixes
 
 import me.albert.corelib.utils.getMeta
+import me.albert.corelib.utils.launch
 import me.albert.corelib.utils.sendMsg
 import me.albert.corelib.utils.setMetadata
-import me.albert.glitchfix.scheduler
+import me.albert.glitchfix.instance
 import org.bukkit.Bukkit
 import org.bukkit.ChatColor
 import org.bukkit.Material
@@ -32,7 +33,7 @@ object CommonFix : Listener {
     fun onTeleport(event: PlayerTeleportEvent) {
         val player = event.player
         if (player.allowFlight && event.to.world != event.from.world) {
-            scheduler.runAtEntity(player) {
+            instance.launch(player) {
                 player.allowFlight = true
             }
         }
