@@ -74,8 +74,10 @@ object CommonFix : Listener {
     @EventHandler
     fun onJoin(e: PlayerJoinEvent) {
         val player = e.player
-        if (player.isDead) player.spigot().respawn()
-        player.vehicle?.eject()
+        instance.launch(player) {
+            if (player.isDead) player.spigot().respawn()
+            player.vehicle?.eject()
+        }
     }
 
     @Synchronized
