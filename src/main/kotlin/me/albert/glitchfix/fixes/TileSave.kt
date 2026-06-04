@@ -1,6 +1,5 @@
 package me.albert.glitchfix.fixes
 
-import com.destroystokyo.paper.event.block.BlockDestroyEvent
 import me.albert.corelib.utils.get
 import me.albert.corelib.utils.hasPD
 import me.albert.corelib.utils.set
@@ -82,16 +81,5 @@ object TileSave : Listener {
     fun protectExplodeEntity(event: EntityExplodeEvent) {
         event.blockList().removeAll { it.state is TileState }
     }
-
-    @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
-    fun protectDestroy(event: BlockDestroyEvent) {
-        val block = event.block
-        val state = block.state
-        if (state !is TileState) {
-            return
-        }
-        event.isCancelled = true
-    }
-
 
 }
