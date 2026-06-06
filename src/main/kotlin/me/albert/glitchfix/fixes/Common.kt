@@ -129,7 +129,7 @@ object CommonFix : Listener {
     @EventHandler(priority = EventPriority.MONITOR)
     fun onHit(event: ProjectileHitEvent) {
         val entity = event.entity
-        val current = entity.getMeta("antiglitch_hit_check")?.asInt() ?: 0
+        val current = entity.getMeta<Int>("antiglitch_hit_check") ?: 0
         if (current >= 10) {
             entity.remove()
             return
