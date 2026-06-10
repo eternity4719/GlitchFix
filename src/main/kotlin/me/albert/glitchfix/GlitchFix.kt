@@ -30,6 +30,7 @@ class GlitchFix : JavaPlugin() {
         registerEvents(AntiEmoji)
         registerEvents(GuiLock)
         registerEvents(McMMO)
+        registerEvents(TileSave)
         PacketEvents.getAPI().eventManager.registerListener(
             AntiEmoji
         )
