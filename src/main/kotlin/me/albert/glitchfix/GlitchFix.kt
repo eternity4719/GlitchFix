@@ -28,7 +28,6 @@ class GlitchFix : JavaPlugin() {
         registerEvents(CommonFix)
         registerEvents(ItemDrop)
         registerEvents(AntiEmoji)
-        registerEvents(TileSave)
         registerEvents(GuiLock)
         registerEvents(McMMO)
         PacketEvents.getAPI().eventManager.registerListener(
