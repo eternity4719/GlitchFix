@@ -25,7 +25,7 @@ object GuiLock : Listener {
     fun onInteract(event: PlayerInteractEvent) {
         if (event.player.hasOpenInterface()) {
             event.isCancelled = true
-            event.player.sendMsg("§c打开界面时无法进行交互!")
+            event.player.sendActionBar("§c打开界面时无法进行交互!")
         }
     }
 
@@ -33,7 +33,7 @@ object GuiLock : Listener {
     fun onInteractEntity(event: PlayerInteractEntityEvent) {
         if (event.player.hasOpenInterface()) {
             event.isCancelled = true
-            event.player.sendMsg("§c打开界面时无法进行交互!")
+            event.player.sendActionBar("§c打开界面时无法进行交互!")
         }
     }
 
