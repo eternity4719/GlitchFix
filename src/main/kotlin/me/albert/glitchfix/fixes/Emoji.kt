@@ -95,13 +95,14 @@ object AntiEmoji : Listener, PacketListenerAbstract(PacketListenerPriority.HIGHE
 
             val oldMeta = oldItem?.itemMeta
             val meta = newItem?.itemMeta ?: return
-            newItem.editMeta {
-                it[anvilKey] = e.whoClicked.name
-            }
             if (meta.displayName.hasEmoji() || oldMeta?.displayName?.contains("§") == true) {
                 newItem.editMeta {
                     it.setDisplayName(oldMeta?.displayName)
                 }
+                return
+            }
+            newItem.editMeta {
+                it[anvilKey] = e.whoClicked.name
             }
         }
     }
