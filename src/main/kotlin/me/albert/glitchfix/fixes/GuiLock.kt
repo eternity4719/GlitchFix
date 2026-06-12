@@ -7,6 +7,7 @@ import org.bukkit.event.EventHandler
 import org.bukkit.event.EventPriority
 import org.bukkit.event.Listener
 import org.bukkit.event.inventory.InventoryType
+import org.bukkit.event.player.PlayerCommandPreprocessEvent
 import org.bukkit.event.player.PlayerInteractEntityEvent
 import org.bukkit.event.player.PlayerInteractEvent
 
@@ -43,6 +44,15 @@ object GuiLock : Listener {
         if (player.hasOpenInterface()) {
             event.isCancelled = true
             player.sendMsg("§c打开界面时无法发送消息!")
+        }
+    }
+
+    @EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
+    fun onCommand(event: PlayerCommandPreprocessEvent) {
+        val player = event.player
+        if (player.hasOpenInterface()) {
+            event.isCancelled = true
+            player.sendMsg("§c打开界面时无法执行指令!")
         }
     }
 }
